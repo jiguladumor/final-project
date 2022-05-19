@@ -6,6 +6,7 @@ import Testimonial from './Container/Testimonial/Testimonial';
 import Product from './Container/Product/Product';
 import Blog_list from './Container/Blog_list/Blog_list';
 import Contact from './Container/Contact/Contact';
+import Login from './Container/Login/Login';
 import Footer from './Component/Footer/Footer';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route exact path={"/products"} component={Product}/>
             <Route exact path={"/blog"} component={Blog_list}/>
             <Route exact path={"/contact"} component={Contact}/>
+            <Route exact path={"/login"} component={Login}/>
         </Switch>
       <Footer/>
     </>
