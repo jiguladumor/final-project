@@ -47,7 +47,7 @@ function Header(props) {
                         </li>
                         <li className="nav-item">
                             {/* <a className="nav-link" href="contact.html">Contact</a> */}
-                            <NavLink exact className="nav-link" to={"/login"}>Login</NavLink>
+                            <NavLink exact className="nav-link" to={"/login"}><i className="fa fa-user" aria-hidden="true" /></NavLink>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">

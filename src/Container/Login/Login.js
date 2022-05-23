@@ -1,114 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button , Form , Row , Col , FormGroup , Label , Input } from 'reactstrap';
 
 
 function Login(props) {
+
+  const [User , setUserType] = useState('login')
+
     return (
-        <div className='container p-5'>
-            <h3 className='text-center'>Log In</h3>
-            <Form>
-  <Row>
-    <Col md={6}>
-      <FormGroup>
-        <Label for="exampleEmail">
-          Email
-        </Label>
-        <Input
-          id="exampleEmail"
-          name="email"
-          placeholder="with a placeholder"
-          type="email"
-        />
-      </FormGroup>
-    </Col>
-    <Col md={6}>
-      <FormGroup>
-        <Label for="examplePassword">
-          Password
-        </Label>
-        <Input
-          id="examplePassword"
-          name="password"
-          placeholder="password placeholder"
-          type="password"
-        />
-      </FormGroup>
-    </Col>
-  </Row>
-  <FormGroup>
-    <Label for="exampleAddress">
-      Address
-    </Label>
-    <Input
-      id="exampleAddress"
-      name="address"
-      placeholder="1234 Main St"
-    />
-  </FormGroup>
-  <FormGroup>
-    <Label for="exampleAddress2">
-      Address 2
-    </Label>
-    <Input
-      id="exampleAddress2"
-      name="address2"
-      placeholder="Apartment, studio, or floor"
-    />
-  </FormGroup>
-  <Row>
-    <Col md={6}>
-      <FormGroup>
-        <Label for="exampleCity">
-          City
-        </Label>
-        <Input
-          id="exampleCity"
-          name="city"
-        />
-      </FormGroup>
-    </Col>
-    <Col md={4}>
-      <FormGroup>
-        <Label for="exampleState">
-          State
-        </Label>
-        <Input
-          id="exampleState"
-          name="state"
-        />
-      </FormGroup>
-    </Col>
-    <Col md={2}>
-      <FormGroup>
-        <Label for="exampleZip">
-          Zip
-        </Label>
-        <Input
-          id="exampleZip"
-          name="zip"
-        />
-      </FormGroup>
-    </Col>
-  </Row>
-  <FormGroup check>
-    <Input
-      id="exampleCheck"
-      name="check"
-      type="checkbox"
-    />
-    <Label
-      check
-      for="exampleCheck"
-    >
-      Check me out
-    </Label>
-  </FormGroup>
-  <Button>
-    Sign in
-  </Button>
-</Form>
+      <section id="appointment" className="appointment">
+      <div className="container">
+          {
+            User === 'login' ?
+              <div className="section-title">
+                  <h2 className='text-center m-3'>Login</h2>
+              </div>
+              :  <div className="section-title">
+                   <h2 className='text-center m-3'>signup</h2>
+                  </div>
+          }
+         
+        <form action method="post" role="form" className="php-email-form">
+          {
+            User === "signup" ?
+            <div className="row justify-content-center"> 
+                <div className="col-md-4 form-group">
+                  <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div className="validate" />
+                </div> 
+               </div> 
+            :null
+          }
+        
+          <div className="row justify-content-center">  
+            <div className="col-md-4 form-group mt-3 mt-md-0">
+              <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+              <div className="validate" />
+            </div>
+          </div>
+          <div className="row justify-content-center"> 
+            <div className="col-md-4 form-group mt-3 mt-md-0">
+              <input type="tel" className="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <div className="validate" />
+            </div>
+          </div>
+          <div className='row   justify-content-center'>
+            <div className='d-flex'>
+            <div class="text-center login m-3"><button type="button" onClick={()=> setUserType('login')}>Login</button></div>
             
-        </div>
+            <div class="text-center singup m-3"><button type="button" onClick={()=> setUserType('signup')}>Signup</button></div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+   </section>
     );
 }
 
