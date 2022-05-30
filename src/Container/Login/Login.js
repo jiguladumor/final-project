@@ -79,6 +79,7 @@ function Login(props) {
                   :
                   <h2>Sign Up</h2>
             }
+            
           </div>
           <Formik values={formik}>
             <Form onSubmit={formik.handleSubmit} className="php-email-form">
