@@ -19,7 +19,7 @@ function Login(props) {
     password: yup.string().required("Please enter password")
   }
 
-  let resetPass = {
+  let forgotpass = {
     email: yup.string().email("Please enter valid email").required("Please enter Email"),
   }
 
@@ -41,7 +41,7 @@ function Login(props) {
     }
   }
   else if (User === 'Forgot') {
-    schema = yup.object().shape(resetPass);
+    schema = yup.object().shape(forgotpass);
     iniValue = {
       email: ''
     }
@@ -53,22 +53,17 @@ function Login(props) {
     validationSchema: schema,
     onSubmit: values => {
       if (User === 'Login') {
-        console.log('Successfully Login 👍');
+        console.log('Successfully Login');
       } else if (User === 'Signup') {
-        console.log('Successfully Signup 👍');
+        console.log('Successfully Signup');
       }
-      // else if (User === 'Forgot') {
-      //     console.log('Your OTP is : 852002');
-      // }
-      // alert(JSON.stringify(values, null, 2));
     }
   });
 
-  //   console.log(formik.errors.email);
 
   return (
     <main id="main">
-      <section id="appointment" className="appointment">
+      <section id="F-login" className="F-login">
         <div className="container">
           <div className="section-title">
             {
@@ -86,7 +81,7 @@ function Login(props) {
                 {
                   User === 'Forgot' ?
                     <div className="col-md-4 form-group mt-3 mt-md-0">
-                      <input type="email" className="form-control" name="email" id="email" placeholder="Enter email" />
+                      <input  className="form-control" name="email" id="email" placeholder="Enter email" onChange={formik.handleChange}/>
                       {
                         formik.errors.email ? <p>{formik.errors.email}</p>
                           :
@@ -114,7 +109,7 @@ function Login(props) {
                   (User === 'Login' || User === 'Signup') ?
                     <>
                       <div className="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" onChange={formik.handleChange} />
+                        <input  className="form-control" name="email" id="email" placeholder="Your Email" onChange={formik.handleChange} />
                         {
                           formik.errors.email ? <p>{formik.errors.email}</p>
                             :
@@ -142,17 +137,17 @@ function Login(props) {
                 User === 'Forgot' ?
                   <>
                    <div className='login-button'>
-                    <div className="text-center"><Button className='appointment-btn border-0 m-0' type="submit">Send OTP</Button></div>
-                    <div className="text-center"><Button className='appointment-btn border-0 ms-0 mt-3' type="submit" onClick={() => setUserType('Login')}>Login</Button></div>
+                    <div className="text-center"><Button className='F-login-btn border-0 m-0' type="submit">Send OTP</Button></div>
+                    <div className="text-center"><Button className='F-login-btn border-0 ms-0 mt-3' type="submit" onClick={() => setUserType('Login')}>Login</Button></div>
                     </div>  
                   </>
                   :
                   User === 'Login' ?
                     <>
                     <div className='login-button'>
-                      <div className="text-center"><Button className='appointment-btn border-0 m-0' type="submit">Login</Button></div>
+                      <div className="text-center"><Button className='F-login-btn border-0 m-0' type="submit">Login</Button></div>
                       <div className='text-center pt-4'>
-                        <Button className='appointment-btn border-0 m-0' type="button" onClick={() => setUserType('Signup')}>Sign Up</Button>
+                        <Button className='F-login-btn border-0 m-0' type="button" onClick={() => setUserType('Signup')}>Sign Up</Button>
                       </div>
                     </div>  
                       <div className="text-center"><p className=' border-0 ms-0 mt-3' type="submit" onClick={() => setUserType('Forgot')} >Forgot Password</p></div>
@@ -160,9 +155,9 @@ function Login(props) {
                     :
                     <>
                     <div className='login-button'>
-                      <div className="text-center"><Button className='appointment-btn border-0 m-0' type="submit">Sign Up</Button></div>
+                      <div className="text-center"><Button className='F-login-btn border-0 m-0' type="submit">Sign Up</Button></div>
                       <div className='text-center pt-4'>
-                      <Button className='appointment-btn border-0 m-0' type="submit" onClick={() => setUserType('Login')}>Login</Button>
+                      <Button className='F-login-btn border-0 m-0' type="submit" onClick={() => setUserType('Login')}>Login</Button>
                       </div>
                     </div> 
                       <p className='text-center border-0 ms-0 mt-3'>Already have an account </p>

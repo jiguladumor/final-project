@@ -73,11 +73,11 @@ h2 {
   align-items: baseline;
   justify-content: center;
 }
-button.appointment-btn {
+button.F-login-btn {
   
   margin: 0 15px !important;
 }
-.appointment-btn {
+.F-login-btn {
   margin-left: 25px;
   background: #f7444e;
   color: #fff;
