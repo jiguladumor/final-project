@@ -1,6 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Button, FormGroup, Input, Label } from 'reactstrap';
+import * as yup from 'yup';
+import {  Formik,Form, useFormik } from 'formik';
 
 function Contact(props) {
+
+const [Usertype]  = useState('ContactUs')
+
+
+ 
+
+const formik = useFormik({
+    initialValues: {
+        name: '',
+        email: '',
+        number: ''
+    },
+    validationSchema:schema,
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  let schema = yup.object().shape({
+    name: yup.string().required("please enter name"),
+    email: yup.string().email("please enter valid email").required("please enter email"),
+    number: yup.number().required("please enter number")
+  });
+  
+console.log(formik.errors.email);
+
     return (
      <div>
             <section className="inner_page_head">
@@ -30,6 +59,44 @@ function Contact(props) {
                             <input type="submit" defaultValue="Submit" />
                         </fieldset>
                         </form>
+                        <Formik values={formik}>
+                        <Form>
+                            <FormGroup>
+                            {/* <Label for="exampleName">Name</Label> */}
+                            <Input type="text" name="name" id="exampleName" placeholder="Name" onChange={formik.handleChange}/>
+                            {
+                                formik.errors.name ? <p>{formik.errors.name}</p>
+                                :
+                                null
+                            }
+                            </FormGroup>
+                            <FormGroup>
+                            {/* <Label for="exampleEmail">Email</Label> */}
+                            <Input type="email" name="email" id="exampleEmail" placeholder="Email"  onChange={formik.handleChange} />
+                            {
+                                formik.errors.email ? <p>{formik.errors.email}</p>
+                                :
+                                null
+                            } 
+                            </FormGroup>
+                            <FormGroup>
+                            {/* <Label for="exampleSubject">Subject</Label> */}
+                            <Input type="number" name="phone" id="exampleSubject" placeholder="Mobile Number"  onChange={formik.handleChange} />
+                            {
+                                formik.errors.number ? <p>{formik.errors.number}</p>
+                                :
+                                null
+                            } 
+                            </FormGroup>
+                            <FormGroup>
+                            {/* <Label for="exampleText">Text Area</Label> */}
+                            <Input type="textarea" name="text" id="exampleText" placeholder="Message" />
+                            </FormGroup>
+                            <div class="text-center"><Button className='F-login-btn border-0 ms-0 mt-3' type="button">Submit</Button></div>
+                        </Form>
+                    </Formik>
+
+
                     </div>
                     </div>
                 </div>
