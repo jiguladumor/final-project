@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { Button, FormGroup, Input, Label } from 'reactstrap';
+import { Button, FormGroup, Input } from 'reactstrap';
 import * as yup from 'yup';
 import {  Formik,Form, useFormik } from 'formik';
 
 function Contact(props) {
 
-const [Usertype]  = useState('ContactUs')
+const [Usertype,setUserType]  = useState('ContactUs')
 
 
- 
+let schema = yup.object().shape({
+    name: yup.string().required("please enter name"),
+    email: yup.string().email("please enter valid email").required("please enter email"),
+    number: yup.number().required("please enter number")
+  });
 
 const formik = useFormik({
     initialValues: {
@@ -22,11 +26,7 @@ const formik = useFormik({
     },
   });
 
-  let schema = yup.object().shape({
-    name: yup.string().required("please enter name"),
-    email: yup.string().email("please enter valid email").required("please enter email"),
-    number: yup.number().required("please enter number")
-  });
+  
   
 console.log(formik.errors.email);
 
@@ -50,7 +50,7 @@ console.log(formik.errors.email);
                 <div className="row">
                     <div className="col-lg-8 offset-lg-2">
                     <div className="full">
-                        <form action="index.html">
+                        {/* <form action="index.html">
                         <fieldset>
                             <input type="text" placeholder="Enter your full name" name="name" required />
                             <input type="email" placeholder="Enter your email address" name="email" required />
@@ -58,7 +58,7 @@ console.log(formik.errors.email);
                             <textarea placeholder="Enter your message" required defaultValue={""} />
                             <input type="submit" defaultValue="Submit" />
                         </fieldset>
-                        </form>
+                        </form> */}
                         <Formik values={formik}>
                         <Form>
                             <FormGroup>
@@ -92,7 +92,7 @@ console.log(formik.errors.email);
                             {/* <Label for="exampleText">Text Area</Label> */}
                             <Input type="textarea" name="text" id="exampleText" placeholder="Message" />
                             </FormGroup>
-                            <div class="text-center"><Button className='F-login-btn border-0 ms-0 mt-3' type="button">Submit</Button></div>
+                            <div class="text-center"><Button className='F-login-btn border-0 ms-0 mt-3' type="submit">Submit</Button></div>
                         </Form>
                     </Formik>
 

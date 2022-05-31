@@ -19,7 +19,7 @@ function Login(props) {
     password: yup.string().required("Please enter password")
   }
 
-  let resetPass = {
+  let forgotPass = {
     email: yup.string().email("Please enter valid email").required("Please enter Email"),
   }
 
@@ -41,7 +41,7 @@ function Login(props) {
     }
   }
   else if (User === 'Forgot') {
-    schema = yup.object().shape(resetPass);
+    schema = yup.object().shape(forgotPass);
     iniValue = {
       email: ''
     }
@@ -56,11 +56,9 @@ function Login(props) {
         console.log('Login Successfully ');
       } else if (User === 'Signup') {
         console.log('Signup Successfully ');
-      }
-      // else if (User === 'Forgot') {
-      //     console.log('Your OTP is : 852002');
-      // }
-      // alert(JSON.stringify(values, null, 2));
+      } else if (User === 'Forgot') {
+        console.log('Your OTP is : 852002');
+    }
     }
   });
 
