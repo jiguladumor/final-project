@@ -92,7 +92,7 @@ console.log(formik.errors.email);
                             {/* <Label for="exampleText">Text Area</Label> */}
                             <Input type="textarea" name="text" id="exampleText" placeholder="Message" />
                             </FormGroup>
-                            <div class="text-center"><Button className='F-login-btn border-0 ms-0 mt-3' type="submit">Submit</Button></div>
+                            <div class="text-center"><Button className='F-login-btn border-0 ms-0 mt-3' type="button">Submit</Button></div>
                         </Form>
                     </Formik>
 
