@@ -15,5 +15,4 @@ function Inputbox({children , error=false, errormessage='' , ...rest}) {
         </div>
     );
 }
-
 export default Inputbox;

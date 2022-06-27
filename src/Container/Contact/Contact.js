@@ -25,7 +25,7 @@ function Contact(props) {
             phone: ''
         },
         validationSchema: schema,
-        onSubmit: values => {
+        onSubmit: (values , {resetForm}) => {
             console.log(values);
 
             const  {
@@ -51,7 +51,7 @@ function Contact(props) {
                 localStorage.setItem("contactdata" , JSON.stringify(condata));
             }
             getData();
-            
+            resetForm();
 
             // alert(JSON.stringify(values, null, 2));
 
