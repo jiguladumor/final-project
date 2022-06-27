@@ -1,11 +1,13 @@
-import React from 'react';
+import {Input , FormFeedback} from 'reactstrap'
+import styled from 'styled-components'
 
-function inputboxstyle(props) {
-    return (
-        <div>
-            
-        </div>
-    );
-}
+ export const Inputboxstyled = styled(Input)`
 
-export default inputboxstyle;
+ `
+
+ export const Formfeedbackstyled = styled(FormFeedback)`
+    color:red;
+    display: ${props => props.error ? "none" :  "block"}
+
+ `
+ 
