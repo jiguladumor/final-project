@@ -8,6 +8,7 @@ import Blog_list from './Container/Blog_list/Blog_list';
 import Contact from './Container/Contact/Contact';
 import Login from './Container/Login/Login';
 import Footer from './Component/Footer/Footer';
+import Catagory from "./Container/Catagory/Catagory";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route exact path={"/about"} component={About}/>
             <Route exact path={"/testimonial"} component={Testimonial}/>
             <Route exact path={"/products"} component={Product}/>
+            <Route exact path={"/catagory"} component={Catagory}/>
             <Route exact path={"/blog"} component={Blog_list}/>
             <Route exact path={"/contact"} component={Contact}/>
             <Route exact path={"/login"} component={Login}/>

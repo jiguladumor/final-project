@@ -1,0 +1,17 @@
+export const INCREMENT = 'INCREMENT'
+export const DECREMENT = 'DECREMENT'
+
+export const GET_DOCTOR ="GET_DOCTOR"
+
+export const POST_DOCTOR ="POST_DOCTOR"
+
+export const DELETE_DOCTOR ="DELETE_DOCTOR"
+
+export const UPDATE_DOCTOR ="UPDATE_DOCTOR"
+
+
+
+
+
+
+
