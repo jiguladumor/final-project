@@ -1,0 +1,320 @@
+// import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import { useDispatch, useSelector } from 'react-redux';
+
+import DialogTitle from '@mui/material/DialogTitle';
+import { DataGrid } from '@mui/x-data-grid';
+import * as yup from 'yup';
+import { Form, Formik, useFormik } from 'formik';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import IconButton from '@mui/material/IconButton';
+
+
+
+function Catagories_admin(props) {
+
+    const [open, setOpen] = useState(false);
+    const [docopen, setDocopen] = useState(false);
+    const [catagory_name, setName] = useState('');
+    const [catagory_price, setPrice] = useState('');
+    const [data, setData] = useState([]);
+    const [datadoc , setDatadoc] = useState('');
+    const [docdid , setDocdid] = useState('');
+    const [update , setUpdate] = useState('');
+    const [eid , setEid] = useState('');
+
+
+
+    const dispatch = useDispatch();
+    
+const handleClickOpen = () => {
+    setOpen(true);
+};
+
+const handleDClickOpen = (id) => {
+    setDocopen(true);
+    setDocdid(id);
+  
+};
+
+
+const handleClickEditOpen = (params) => {
+    console.log(params.row);
+    setOpen(true);
+
+    formik.setValues({
+        ...params.row,
+        file:params.row.url
+    })
+    
+    setEid(params.id);
+    setUpdate(true);
+};
+
+const handleClose = () => {
+    setOpen(false);
+    setDocopen(false);
+    
+
+};
+
+let schema = yup.object().shape({
+    catagory_name: yup.string().required("Please enter name"),
+    catagory_price: yup.string().required("Please enter Price"),
+    file : yup.mixed().required("please upload file")
+
+});
+
+const formik = useFormik({
+    initialValues: {
+        catagory_name: '',
+        catagory_price: '',
+        file : ''
+    },
+    validationSchema: schema,
+    onSubmit: (values, { resetForm }) => {
+
+        if (update) {
+            handleEdit(values)   
+        }else{
+
+            console.log(values);
+
+        //   alert(JSON.stringify(values, null, 2));
+        // const {
+        //     catagory_name,
+        //     catagory_price,
+        //     file
+            
+        // } = values;
+
+        // const docdata = {
+        //     id: Math.floor(Math.random() * 1000),
+        //     catagory_name,
+        //     catagory_price,
+        //     file
+        // }
+
+        // let newdata = JSON.parse(localStorage.getItem("doctor"));
+        // console.log(newdata);
+
+        // if (newdata == null) {
+        //     localStorage.setItem('doctor', JSON.stringify([docdata]));
+        // } else {
+        //     newdata.push(docdata)
+        //     localStorage.setItem('doctor', JSON.stringify(newdata));
+        // }
+
+
+        // console.log(values);
+
+
+        // dispatch(addDoctordata(values))
+
+        handleClose();
+        getData();
+        // console.log(data);
+        resetForm();
+    }
+  
+    }
+    
+   
+});
+
+
+const handleEdit = (values) =>{
+    console.log(values)
+
+    // let eData = JSON.parse(localStorage.getItem("doctor"));
+    // console.log(eData);
+
+    // let editData = eData.map((u) => {
+    //     if (u.id == eid) {
+    //         return(
+    //             {id: eid , ...values}
+    //         )
+    //     }else{
+    //         return u;
+    //     }
+    // });
+
+    // localStorage.setItem("doctor", JSON.stringify(editData));
+
+    // dispatch(updateDoctordata(values))
+    
+    getData();
+    setOpen(false);
+    setUpdate(false);
+    setEid();
+
+}
+
+
+const getData = () => {
+    // let getDocData =JSON.parse( localStorage.getItem('doctor'));
+
+    // if(getDocData !== null){
+        // setDatadoc(doctor.doctor);
+    // }
+    // setDatadoc(doctor.doctors);
+}
+
+
+
+useEffect (
+    () =>{
+        // dispatch(getdocdata())
+        getData();
+    },
+[])
+
+const handleDelete = () => {
+    // let deldata = JSON.parse(localStorage.getItem("doctor"));
+
+    // let filterdata = deldata.filter((r, i) => r.id !== docdid);
+
+    // localStorage.setItem("doctor", JSON.stringify(filterdata));
+
+    // dispatch(deletDoctordata(docdid))
+
+    getData();
+    setDocopen(false);
+
+}
+
+
+const columns = [
+    // { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'catagory_name', headerName: 'Name', width: 130 },
+    { field: 'catagory_price', headerName: 'Price', width: 130 },
+    { field: 'file', headerName: 'Image', width: 130,
+        renderCell: (params) => (
+            <img src={params.row.url} width="100" height={100} />
+        )
+    },
+    { field: 'action', 
+    headerName: 'Action',
+     width: 130,
+     renderCell : (params) =>{
+        return (
+            <>
+            
+            <Button startIcon={<DeleteIcon />} onClick={() =>handleDClickOpen(params.row)}></Button>
+            
+            <IconButton aria-label="edit" onClick={()=>handleClickEditOpen(params)}>
+            <ModeEditIcon />
+          </IconButton>
+            </>
+           
+        )
+     }
+    },
+
+];
+
+
+
+
+
+
+    return (
+        <div>
+               <Button variant="outlined" onClick={handleClickOpen}>
+                            Add Product
+                        </Button>
+
+
+
+                        <div>
+                      
+
+                      <div style={{ height: 400, width: '100%' }}>
+                          <DataGrid
+                              rows={data}
+                              columns={columns}
+                              pageSize={5}
+                              rowsPerPageOptions={[5]}
+                              checkboxSelection
+                          />
+                      </div>
+                      <div>
+
+                      <Dialog open={open} onClose={handleClose}>
+              <DialogTitle>Empoyee Data</DialogTitle>
+              <Formik value={formik}>
+                  <Form key={formik} onSubmit={formik.handleSubmit}>
+                      <DialogContent>
+
+                          <TextField
+                              autoFocus
+                              margin="dense"
+                              id="catagory_name"
+                              name="catagory_name"
+                              value={formik.values.catagory_name}
+                              label="Catagory Name"
+                              fullWidth
+                              variant="standard"
+                              onChange={formik.handleChange}
+
+                          />
+                          {
+                              formik.errors.catagory_name ? <p>{formik.errors.catagory_name}</p> : null
+                          }
+
+                          <TextField
+                              autoFocus
+                              margin="dense"
+                              id="catagory_price"
+                              name="catagory_price"
+                              value={formik.values.catagory_price}
+                              label="Catagory price"
+                              fullWidth
+                              variant="standard"
+                              onChange={formik.handleChange}
+
+                          />
+                           {
+                              formik.errors.catagory_price ? <p>{formik.errors.catagory_price}</p> : null
+                          }
+
+                          <input
+                              autoFocus
+                              margin="dense"
+                              type="file"
+                              id="file"
+                              name="file"
+                              label="Upload File"
+                              fullWidth
+                              variant="standard"
+                              onChange={(e) => formik.setFieldValue('file',  e.target.files[0])}
+
+                          />
+                               {
+                              formik.errors.file ? <p>{formik.errors.file}</p> : null
+                          }
+                      </DialogContent>
+                      <DialogActions>
+                          <Button onClick={handleClose}>Cancel</Button>
+                          <Button type="submit">Submit</Button>
+                      </DialogActions>
+                  </Form>
+              </Formik>
+          </Dialog>
+                      </div>
+
+                  </div>
+
+              </div>        
+     
+    );
+
+}
+
+export default Catagories_admin;
