@@ -1,10 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 
 
 
 
 function Catagory(props) {
+
+    const catagory = useSelector(state => state.doctors);
+    
+    console.log(catagory);
+    // const view_catagory = catagory.doctor ;
 
 
 

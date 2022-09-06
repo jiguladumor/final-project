@@ -6,7 +6,6 @@ import { doctorReducer } from "./doctor.reducer";
 
 export const rootreducer = combineReducers({
     counter : Counterreducer,
-
     doctors : doctorReducer
   })
   
