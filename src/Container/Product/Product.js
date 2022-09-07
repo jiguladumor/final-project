@@ -39,10 +39,7 @@ function Product(props) {
 useEffect(() =>{
    dispatch(getdocdata());
    setshowCatagory(catagory.doctor)
-},[
-catagory.doctor
-
-])
+},[])
 
     const handleSubmit = () => {
 
