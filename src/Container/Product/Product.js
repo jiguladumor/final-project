@@ -6,10 +6,19 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { DataGrid } from '@mui/x-data-grid';
+import { getdocdata } from '../../Redux/Acton/doctor.action';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 
 function Product(props) {
 
+    
+    const catagory = useSelector(state => state.doctors);
+    
+    console.log(catagory.doctor);
+
+    const dispatch = useDispatch()
 
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
@@ -17,6 +26,7 @@ function Product(props) {
     const [manufacturer, setManufacturer] = useState('');
     const [price, setPrice] = useState('');
     const [data, setData] = useState([]);
+    const [showCatagory , setshowCatagory] = useState([]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -26,21 +36,27 @@ function Product(props) {
         setOpen(false);
     };
 
+useEffect(() =>{
+   dispatch(getdocdata());
+   setshowCatagory(catagory.doctor)
+},[
+catagory.doctor
 
+])
 
     const handleSubmit = () => {
 
 
-        let data = {
-            id: Math.floor(Math.random() * 1000),
-            name,
-            brand,
-            manufacturer,
-            price
-        }
+        // let data = {
+        //     id: Math.floor(Math.random() * 1000),
+        //     name,
+        //     brand,
+        //     manufacturer,
+        //     price
+        // }
 
-        let localdata = JSON.parse(localStorage.getItem("product"));
-        console.log(localdata);
+        // let localdata = JSON.parse(localStorage.getItem("product"));
+        // console.log(localdata);
 
         // if (prodata == null) {
         //     localStorage.setItem("product", JSON.stringify([data]));
@@ -88,6 +104,30 @@ function Product(props) {
                     </div>
                 </div>
             </section>
+
+            <section className='catagory-view'>
+            <div className="container">
+            <div className="row">
+                    {
+                        showCatagory.map((c) =>{
+                            return(
+                            <div className='cat-view-box'>
+                            
+                                <div className='box-img'>
+                                    <img src={c.url}/>
+                                </div>
+                                <h4 className='cat-box-title'>{c.catagory_name}</h4>
+                            </div>
+                            )
+                        })
+                    }
+
+            </div>
+
+            </div>
+
+            </section>
+
             {/* end inner page section */}
             {/* product section */}
             <section className="product_section layout_padding">

@@ -28,7 +28,7 @@ function App() {
           <Route exact path={"/about"} component={About} />
           <Route exact path={"/testimonial"} component={Testimonial} />
           <Route exact path={"/products"} component={Product} />
-          <Route exact path={"/catagory"} component={Catagory} />
+          {/* <Route exact path={"/catagory"} component={Catagory} /> */}
           <Route exact path={"/Catagories_admin"} component={Catagories_admin} />
           <Route exact path={"/blog"} component={Blog_list} />
           <Route exact path={"/contact"} component={Contact} />

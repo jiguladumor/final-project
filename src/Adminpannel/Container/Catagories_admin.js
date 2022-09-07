@@ -77,7 +77,7 @@ function Catagories_admin(props) {
 
     let schema = yup.object().shape({
         catagory_name: yup.string().required("Please enter name"),
-        catagory_price: yup.string().required("Please enter Price"),
+        // catagory_price: yup.string().required("Please enter Price"),
         // catagory_list : yup.string().required("please select catagory"),
         file: yup.mixed().required("please upload file")
 
@@ -206,7 +206,7 @@ function Catagories_admin(props) {
     const columns = [
         // { field: 'id', headerName: 'ID', width: 70 },
         { field: 'catagory_name', headerName: 'Catagory Name', width: 130 },
-        { field: 'catagory_price', headerName: 'Catagory Price', width: 130 },
+        // { field: 'catagory_price', headerName: 'Catagory Price', width: 130 },
         // { field: 'catagory_list', headerName: 'Catagory Type', width: 130 },
         {
             field: 'file', headerName: 'Image', width: 130,
@@ -274,7 +274,7 @@ function Catagories_admin(props) {
                                         formik.errors.catagory_name ? <p>{formik.errors.catagory_name}</p> : null
                                     }
 
-                                    <TextField
+                                    {/* <TextField
                                         autoFocus
                                         margin="dense"
                                         id="catagory_price"
@@ -288,7 +288,7 @@ function Catagories_admin(props) {
                                     />
                                     {
                                         formik.errors.catagory_price ? <p>{formik.errors.catagory_price}</p> : null
-                                    }
+                                    } */}
                                
 
                                     {/* <FormControl fullWidth>

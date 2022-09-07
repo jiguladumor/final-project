@@ -47,8 +47,8 @@ export const addDoctordata = (data) => async (dispatch) => {
           .then(async(url) => {
                 const docRef = await addDoc(collection(db, "Catagory"), {
                   catagory_name : data.catagory_name,
-                  catagory_price : data.catagory_price,
-                  catagory_list : data.catagory_list,
+                  // catagory_price : data.catagory_price,
+                  // catagory_list : data.catagory_list,
                   url : url,
                   FileName:randomName
                 });
@@ -57,8 +57,8 @@ export const addDoctordata = (data) => async (dispatch) => {
                    payload:{
                     id: docRef.id ,
                     catagory_name : data.catagory_name,
-                    catagory_price : data.catagory_price,
-                    catagory_list : data.catagory_list,
+                    // catagory_price : data.catagory_price,
+                    // catagory_list : data.catagory_list,
                     url : url,   
                     FileName:randomName
                   }})
@@ -121,8 +121,8 @@ export const updateDoctordata = (data) => async (dispatch) => {
     if(typeof data.file === "string"){
       await updateDoc(docDataRefedit, {
         catagory_name : data.catagory_name,
-       catagory_price : data.catagory_price,
-       catagory_list : data.catagory_list,
+        // catagory_price : data.catagory_price,
+        // catagory_list : data.catagory_list,
         FileName:data.FileName,
         url : data.url
 
@@ -146,8 +146,8 @@ export const updateDoctordata = (data) => async (dispatch) => {
                 .then(async(url) => {
                   await updateDoc(docDataRefedit, {
                     catagory_name : data.catagory_name,
-                    catagory_price : data.catagory_price,
-                    catagory_list : data.catagory_list,
+                    // catagory_price : data.catagory_price,
+                    // catagory_list : data.catagory_list,
                     FileName:randomName,
                     url : url
             
