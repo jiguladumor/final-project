@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { DataGrid } from '@mui/x-data-grid';
 import { getdocdata } from '../../Redux/Acton/doctor.action';
 import { useDispatch, useSelector } from 'react-redux';
+// import allimg from "../../../public/images/1f6cd.png"
 
 
 
@@ -26,10 +27,13 @@ function Product(props) {
     const [manufacturer, setManufacturer] = useState('');
     const [price, setPrice] = useState('');
     const [data, setData] = useState([]);
-    const [showCatagory , setshowCatagory] = useState([]);
+
 
     const handleClickOpen = () => {
         setOpen(true);
+    };
+    const handleCatagory = () => {
+   
     };
 
     const handleClose = () => {
@@ -38,7 +42,7 @@ function Product(props) {
 
 useEffect(() =>{
    dispatch(getdocdata());
-   setshowCatagory(catagory.doctor)
+
 },[])
 
     const handleSubmit = () => {
@@ -105,16 +109,24 @@ useEffect(() =>{
             <section className='catagory-view'>
             <div className="container">
             <div className="row">
+                     <div className='cat-view-box'> 
+                             <div className='box-img'>
+                                <img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f6cd.png" />
+                             </div>
+                             <h4 className='cat-box-title'>All</h4>
+                      </div>
                     {
-                        showCatagory.map((c) =>{
+                        catagory.doctor.map((c) =>{
                             return(
-                            <div className='cat-view-box'>
-                            
-                                <div className='box-img'>
-                                    <img src={c.url}/>
+                            <a onClick={(e) => handleCatagory(c.catagory_name)}>
+                                <div className='cat-view-box'>
+                                
+                                    <div className='box-img'>
+                                        <img src={c.url}/>
+                                    </div>
+                                    <h4 className='cat-box-title'>{c.catagory_name}</h4>
                                 </div>
-                                <h4 className='cat-box-title'>{c.catagory_name}</h4>
-                            </div>
+                            </a>
                             )
                         })
                     }

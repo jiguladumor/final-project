@@ -16,6 +16,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import IconButton from '@mui/material/IconButton';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { addDoctordata, deletDoctordata, getdocdata, updateDoctordata } from '../../Redux/Acton/doctor.action';
+import { addProductdata, getProduct, getproduct } from '../../Redux/Acton/product.action';
 
 
 
@@ -23,25 +24,22 @@ function Catagories_admin(props) {
 
     const [open, setOpen] = useState(false);
     const [docopen, setDocopen] = useState(false);
-    const [catagory_name, setName] = useState('');
-    const [catagory_price, setPrice] = useState('');
+    const [product_name, setName] = useState('');
+    const [product_price, setPrice] = useState('');
     const [data, setData] = useState([]);
     const [datadoc, setDatadoc] = useState('');
     const [docdid, setDocdid] = useState('');
     const [update, setUpdate] = useState('');
     const [eid, setEid] = useState('');
-
-
-
-
-
-
     const dispatch = useDispatch();
-    const catagory = useSelector(state => state.doctors);
+    const doctors = useSelector(state => state.doctors);
+    const product = useSelector(state => state.product);
     
-    const catagories_data = catagory.doctor ;
+    const productdata = product.product ;
 
-    // console.log(catagory);
+    // console.log(product);
+// console.log(product.doctor);
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -76,18 +74,19 @@ function Catagories_admin(props) {
     };
 
     let schema = yup.object().shape({
-        catagory_name: yup.string().required("Please enter name"),
-        // catagory_price: yup.string().required("Please enter Price"),
-        // catagory_list : yup.string().required("please select catagory"),
+        product_name: yup.string().required("Please enter name"),
+        product_price: yup.string().required("Please enter Price"),
+        product_list : yup.string().required("please select product"),
+        product_description : yup.string().required("please enter description"),
         file: yup.mixed().required("please upload file")
 
     });
 
     const formik = useFormik({
         initialValues: {
-            catagory_name: '',
-            catagory_price: '',
-            // catagory_list: "",
+            product_name: '',
+            product_price: '',
+            // product_list: "",
             file: ''
         },
         validationSchema: schema,
@@ -101,16 +100,16 @@ function Catagories_admin(props) {
 
                 //   alert(JSON.stringify(values, null, 2));
                 // const {
-                //     catagory_name,
-                //     catagory_price,
+                //     product_name,
+                //     product_price,
                 //     file
 
                 // } = values;
 
                 // const docdata = {
                 //     id: Math.floor(Math.random() * 1000),
-                //     catagory_name,
-                //     catagory_price,
+                //     product_name,
+                //     product_price,
                 //     file
                 // }
 
@@ -128,7 +127,7 @@ function Catagories_admin(props) {
                 // console.log(values);
 
 
-                dispatch(addDoctordata(values))
+                dispatch(addProductdata(values))
 
                 handleClose();
                 getData();
@@ -184,6 +183,7 @@ function Catagories_admin(props) {
     useEffect(
         () => {
             dispatch(getdocdata())
+            dispatch(getProduct())
             getData();
         },
         [])
@@ -205,9 +205,10 @@ function Catagories_admin(props) {
 
     const columns = [
         // { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'catagory_name', headerName: 'Catagory Name', width: 130 },
-        // { field: 'catagory_price', headerName: 'Catagory Price', width: 130 },
-        // { field: 'catagory_list', headerName: 'Catagory Type', width: 130 },
+        { field: 'product_name', headerName: 'Product Name', width: 130 },
+        { field: 'product_price', headerName: 'Product Price', width: 130 },
+        { field: 'product_list', headerName: 'Product Type', width: 130 },
+        { field: 'product_description', headerName: 'Product Description', width: 130 },
         {
             field: 'file', headerName: 'Image', width: 130,
             renderCell: (params) => (
@@ -243,7 +244,7 @@ function Catagories_admin(props) {
             <div>
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
-                        rows={catagories_data}
+                        rows={productdata}
                         columns={columns}
                         pageSize={5}
                         rowsPerPageOptions={[5]}
@@ -261,57 +262,76 @@ function Catagories_admin(props) {
                                     <TextField
                                         autoFocus
                                         margin="dense"
-                                        id="catagory_name"
-                                        name="catagory_name"
-                                        value={formik.values.catagory_name}
-                                        label="Catagory Name"
+                                        id="product_name"
+                                        name="product_name"
+                                        value={formik.values.product_name}
+                                        label="Product Name"
                                         fullWidth
                                         variant="standard"
                                         onChange={formik.handleChange}
 
                                     />
                                     {
-                                        formik.errors.catagory_name ? <p>{formik.errors.catagory_name}</p> : null
+                                        formik.errors.product_name ? <p>{formik.errors.product_name}</p> : null
                                     }
 
-                                    {/* <TextField
+                                   <TextField
                                         autoFocus
                                         margin="dense"
-                                        id="catagory_price"
-                                        name="catagory_price"
-                                        value={formik.values.catagory_price}
-                                        label="Catagory price"
+                                        id="product_price"
+                                        name="product_price"
+                                        value={formik.values.product_price}
+                                        label="Product price"
                                         fullWidth
                                         variant="standard"
                                         onChange={formik.handleChange}
 
                                     />
                                     {
-                                        formik.errors.catagory_price ? <p>{formik.errors.catagory_price}</p> : null
-                                    } */}
+                                        formik.errors.product_price ? <p>{formik.errors.product_price}</p> : null
+                                    } 
                                
 
-                                    {/* <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Catagory Type</InputLabel>
+                                <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Product Type</InputLabel>
                                         <Select
                                             labelId="demo-simple-select-label"
-                                            id="catagory_list"
-                                            name='catagory_list'
-                                            value={formik.values.catagory_list}
-                                            label="Catagory"
+                                            id="product_list"
+                                            name='product_list'
+                                            value={formik.values.product_list}
+                                            label="Product"
                                             onChange={formik.handleChange}
                                         >
-                                            <MenuItem value={"T-shirt"}>T-shirt</MenuItem>
-                                            <MenuItem value={"Shirt"}>Shirt</MenuItem>
-                                            <MenuItem value={"Dress"}>Dress</MenuItem>
-                                            <MenuItem value={"Kurti"}>Kurti</MenuItem>
-                                            <MenuItem value={"shoes"}>shoes</MenuItem>
+                                             {
+                                                doctors.doctor.map((c) =>{
+                                                    return(
+                                                        <MenuItem value={c.catagory_name}>{c.catagory_name}</MenuItem>
+                                                    )
+                                                })
+                                                    }
                                         </Select>
                                     </FormControl>
 
                                     {
-                                        formik.errors.atagory_list ? <p>{formik.errors.atagory_list}</p> : null
-                                    } */}
+                                        formik.errors.product_list ? <p>{formik.errors.product_list}</p> : null
+                                    } 
+
+
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        id="product_description"
+                                        name="product_description"
+                                        value={formik.values.product_description}
+                                        label="Product Description"
+                                        fullWidth
+                                        variant="standard"
+                                        onChange={formik.handleChange}
+
+                                    />
+                                    {
+                                        formik.errors.product_description ? <p>{formik.errors.product_description}</p> : null
+                                    } 
 
                                     <input
                                         autoFocus
@@ -328,6 +348,9 @@ function Catagories_admin(props) {
                                     {
                                         formik.errors.file ? <p>{formik.errors.file}</p> : null
                                     }
+
+                              
+                               
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleClose}>Cancel</Button>
