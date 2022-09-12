@@ -1181,3 +1181,11 @@ justify-content: space-around;
 h4.cat-box-title {
   font-size: 18px;
 }
+
+section.catagory-view a {
+  color: #000;
+}
+.detail-box {
+  /* display: flex; */
+  flex-direction: column;
+}

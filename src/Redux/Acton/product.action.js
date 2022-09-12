@@ -84,7 +84,7 @@ export const addProductdata = (data) => async (dispatch) => {
 
 
 
-export const deletDoctordata = (data) => async (dispatch) => {
+export const deletCatagorydata = (data) => async (dispatch) => {
   try {
 
     dispatch(loadingMedicin())
@@ -113,7 +113,7 @@ export const deletDoctordata = (data) => async (dispatch) => {
 }
 
 
-export const updateDoctordata = (data) => async (dispatch) => {
+export const updateCatagoryata = (data) => async (dispatch) => {
   // console.log(data);
   try {
 

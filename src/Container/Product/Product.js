@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { DataGrid } from '@mui/x-data-grid';
 import { getdocdata } from '../../Redux/Acton/doctor.action';
 import { useDispatch, useSelector } from 'react-redux';
+import { getProduct } from '../../Redux/Acton/product.action';
 // import allimg from "../../../public/images/1f6cd.png"
 
 
@@ -16,8 +17,10 @@ function Product(props) {
 
     
     const catagory = useSelector(state => state.doctors);
+    const product = useSelector(state => state.product);
     
     console.log(catagory.doctor);
+    console.log(product.product);
 
     const dispatch = useDispatch()
 
@@ -28,12 +31,17 @@ function Product(props) {
     const [price, setPrice] = useState('');
     const [data, setData] = useState([]);
 
+    const [search , setSearch] = useState({
+        catagory : "All",
+        searchBar : ""
+    });
 
+    console.log(search);
     const handleClickOpen = () => {
         setOpen(true);
     };
-    const handleCatagory = () => {
-   
+    const handleCatagory = (c) => {
+   setSearch({...search , catagory : c})
     };
 
     const handleClose = () => {
@@ -42,49 +50,16 @@ function Product(props) {
 
 useEffect(() =>{
    dispatch(getdocdata());
+   dispatch(getProduct())
 
 },[])
 
     const handleSubmit = () => {
 
 
-        // let data = {
-        //     id: Math.floor(Math.random() * 1000),
-        //     name,
-        //     brand,
-        //     manufacturer,
-        //     price
-        // }
-
-        // let localdata = JSON.parse(localStorage.getItem("product"));
-        // console.log(localdata);
-
-        // if (prodata == null) {
-        //     localStorage.setItem("product", JSON.stringify([data]));
-        // } else {
-        //     prodata.push(data);
-        //     localStorage.setItem("product", JSON.stringify(prodata));
-        // }
-
-
-        // console.log(prodata); 
     }
 
 
-
-
-
-
-
-
-    const columns = [
-        { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'name', headerName: 'Product name', width: 130 },
-        { field: 'brand', headerName: 'Product Brand', width: 130 },
-        { field: 'manufacturer', headerName: 'Manufacturer', width: 130 },
-        { field: 'price', headerName: 'Price', width: 130 },
-
-    ];
 
 
 
@@ -109,16 +84,19 @@ useEffect(() =>{
             <section className='catagory-view'>
             <div className="container">
             <div className="row">
+            <a href="#" onClick={(e) => handleCatagory("All")}>
                      <div className='cat-view-box'> 
                              <div className='box-img'>
                                 <img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f6cd.png" />
                              </div>
-                             <h4 className='cat-box-title'>All</h4>
+                               <h4 className='cat-box-title'>All</h4>
+                             
                       </div>
+                      </a>
                     {
                         catagory.doctor.map((c) =>{
                             return(
-                            <a onClick={(e) => handleCatagory(c.catagory_name)}>
+                            <a href="#" onClick={(e) => handleCatagory(c.catagory_name)}>
                                 <div className='cat-view-box'>
                                 
                                     <div className='box-img'>
@@ -147,6 +125,39 @@ useEffect(() =>{
                         </h2>
                     </div>
                     <div className="row">
+                     
+                                    {
+                                        product.product.map((e) =>(
+                                            
+                                 
+
+                                            <div className="col-sm-6 col-md-4 col-lg-3">
+                                                <div className="box">
+                                                    <div className="option_container">
+                                                        <div className="options">
+                                                            <a href className="option1">
+                                                                Add To Cart
+                                                            </a>
+                                                            <a href className="option2">
+                                                                Buy Now
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div  className="img-box">
+                                                            <img  src={e.url}/>
+                                                        </div>
+                                                        <div className="detail-box">
+                                                                <h5 className='pro-name'>{e.product_name}</h5>
+                                                                <h6>Price : {e.product_price}</h6>
+                                                                <p className='pro-type'>Catagory : {e.product_list}</p>
+                                                                <p className='description-pro'>{e.product_description}</p>
+                                                        </div>
+                                                </div>
+                                            </div>
+
+                                        ))
+                                    }
+                        
                         <div className="col-sm-6 col-md-4 col-lg-3">
                             <div className="box">
                                 <div className="option_container">
@@ -454,76 +465,7 @@ useEffect(() =>{
                         </a>
                     </div>
 
-                    <div>
-                        <Button variant="outlined" onClick={handleClickOpen}>
-                            Add Product
-                        </Button>
-
-                        <div style={{ height: 400, width: '100%' }}>
-                            <DataGrid
-                                rows={data}
-                                columns={columns}
-                                pageSize={5}
-                                rowsPerPageOptions={[5]}
-                                checkboxSelection
-                            />
-                        </div>
-                        <div>
-
-                            <Dialog open={open} onClose={handleClose}>
-                                <DialogTitle>Add Product</DialogTitle>
-                                <DialogContent>
-
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="name"
-                                        label="Product Name"
-                                        type="name"
-                                        fullWidth
-                                        variant="standard"
-                                        onChange={(e) => setName(e.target.value)}
-                                    />
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="brant"
-                                        label="Product Brand"
-                                        type="name"
-                                        fullWidth
-                                        variant="standard"
-                                        onChange={(e) => setBrand(e.target.value)}
-                                    />
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="manufacturer"
-                                        label="Manufacturer"
-                                        type="name"
-                                        fullWidth
-                                        variant="standard"
-                                        onChange={(e) => setManufacturer(e.target.value)}
-                                    />
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="Price"
-                                        label="Price"
-                                        type="number"
-                                        fullWidth
-                                        variant="standard"
-                                        onChange={(e) => setPrice(e.target.value)}
-                                    />
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleClose}>Cancel</Button>
-                                    <Button onClick={handleSubmit()}>Submit</Button>
-                                </DialogActions>
-                            </Dialog>
-                        </div>
-
-                    </div>
-
+                    
                 </div>
             </section>
 

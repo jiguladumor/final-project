@@ -16,11 +16,11 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import IconButton from '@mui/material/IconButton';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { addDoctordata, deletDoctordata, getdocdata, updateDoctordata } from '../../Redux/Acton/doctor.action';
-import { addProductdata, getProduct, getproduct } from '../../Redux/Acton/product.action';
+import { addProductdata, deletCatagorydata, getProduct, getproduct, updateCatagoryata } from '../../Redux/Acton/product.action';
 
 
 
-function Catagories_admin(props) {
+function Product_admin(props) {
 
     const [open, setOpen] = useState(false);
     const [docopen, setDocopen] = useState(false);
@@ -159,7 +159,7 @@ function Catagories_admin(props) {
 
         // localStorage.setItem("doctor", JSON.stringify(editData));
 
-        dispatch(updateDoctordata(values))
+        dispatch(updateCatagoryata(values))
 
         getData();
         setOpen(false);
@@ -195,7 +195,7 @@ function Catagories_admin(props) {
 
         // localStorage.setItem("doctor", JSON.stringify(filterdata));
 
-        dispatch(deletDoctordata(docdid))
+        dispatch(deletCatagorydata(docdid))
 
         getData();
         setDocopen(false);
@@ -388,4 +388,4 @@ function Catagories_admin(props) {
 
 }
 
-export default Catagories_admin;
+export default Product_admin;
