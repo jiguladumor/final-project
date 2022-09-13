@@ -1180,12 +1180,36 @@ justify-content: space-around;
 }
 h4.cat-box-title {
   font-size: 18px;
+  margin: 3% 0;
 }
 
 section.catagory-view a {
   color: #000;
 }
 .detail-box {
-  /* display: flex; */
+
   flex-direction: column;
+}
+p.description-pro {
+
+  width: 100%;
+  height: 45px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product_section .box .detail-box h5 {
+  font-size: 18px;
+  margin-top: 10px;
+  width: 100%;
+  height: 45px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+.product_section .box:hover {
+  box-shadow: 0 0 8px 0 #4c4c4c6b;
+}
+section.catagory-view {
+  margin-top: 1%;
 }
