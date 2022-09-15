@@ -35,7 +35,9 @@ function Product_admin(props) {
     const doctors = useSelector(state => state.doctors);
     const product = useSelector(state => state.product);
     
+    const catagorydata = doctors.doctor ;
     const productdata = product.product ;
+    console.log(catagorydata);
 
     // console.log(product);
 // console.log(product.doctor);
@@ -86,7 +88,8 @@ function Product_admin(props) {
         initialValues: {
             product_name: '',
             product_price: '',
-            // product_list: "",
+            product_list: "",
+            product_description : "",
             file: ''
         },
         validationSchema: schema,
@@ -207,7 +210,19 @@ function Product_admin(props) {
         // { field: 'id', headerName: 'ID', width: 70 },
         { field: 'product_name', headerName: 'Product Name', width: 130 },
         { field: 'product_price', headerName: 'Product Price', width: 130 },
-        { field: 'product_list', headerName: 'Product Type', width: 130 },
+        { field: 'product_list', headerName: 'Product Type', width: 130,
+        renderCell: (params) => {
+            catagorydata.map((g) =>{
+                if (g.id === params.formattedValue) {
+                    console.log(g.catagory_name);
+                    return <p>{g.catagory_name}</p>
+                }else{
+                    console.log();
+                }
+            })
+        }
+
+         },
         { field: 'product_description', headerName: 'Product Description', width: 130 },
         {
             field: 'file', headerName: 'Image', width: 130,
@@ -298,14 +313,14 @@ function Product_admin(props) {
                                             labelId="demo-simple-select-label"
                                             id="product_list"
                                             name='product_list'
-                                            value={formik.values.product_list}
+                                            // value={formik.values.product_list}
                                             label="Product"
                                             onChange={formik.handleChange}
                                         >
                                              {
-                                                doctors.doctor.map((c) =>{
+                                                catagorydata.map((c) =>{
                                                     return(
-                                                        <MenuItem value={c.catagory_name}>{c.catagory_name}</MenuItem>
+                                                        <MenuItem value={c.id}>{c.catagory_name}</MenuItem>
                                                     )
                                                 })
                                                     }
