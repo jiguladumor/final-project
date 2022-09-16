@@ -1213,3 +1213,7 @@ p.description-pro {
 section.catagory-view {
   margin-top: 1%;
 }
+.product_section .options button {
+  background: none;
+  border: none;
+}

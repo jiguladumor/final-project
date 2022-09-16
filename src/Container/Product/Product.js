@@ -19,8 +19,9 @@ function Product(props) {
     const catagory = useSelector(state => state.doctors);
     const product = useSelector(state => state.product);
     
-    console.log(catagory.doctor);
-    console.log(product.product);
+    // console.log(catagory.doctor);
+    // console.log(product.product);
+    const productdata = product.product ;
 
     const dispatch = useDispatch()
 
@@ -31,19 +32,31 @@ function Product(props) {
     const [price, setPrice] = useState('');
     const [data, setData] = useState([]);
     const [search , setSearch] = useState("All");
+    const [filterDataPro , setFilterDataPro] = useState()
 
     console.log(search);
 
     const handleCatagory = (c) => {
 //    setSearch({...search , catagory : c})
 
-   let search = product.filter((f) => (
-    f.id.toString().includes(f) ||
-    f.product_list.toString().includes(f)   
+    console.log("id" ,c);
+    console.log("Filterdata" , c , productdata);
 
-))
+    const Filter = [];
 
-console.log(search);
+    if (c === "All") {
+
+        Filter.push(productdata);
+    }
+
+    const FiltreProd = productdata.filter((f) =>{
+        if (c === f.product_list) {
+            Filter.push(f);
+            
+        }
+    })
+    setFilterDataPro(Filter)
+
 
     };
 
@@ -136,12 +149,12 @@ useEffect(() =>{
                                                 <div className="box">
                                                     <div className="option_container">
                                                         <div className="options">
-                                                            <a href className="option1">
+                                                            <button><a href className="option1">
                                                                 Add To Cart
-                                                            </a>
-                                                            <a href className="option2">
+                                                            </a></button>
+                                                            <button> <a href className="option2">
                                                                 Buy Now
-                                                            </a>
+                                                            </a></button>
                                                         </div>
                                                     </div>
                                                     <div  className="img-box">

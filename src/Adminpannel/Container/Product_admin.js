@@ -35,9 +35,9 @@ function Product_admin(props) {
     const doctors = useSelector(state => state.doctors);
     const product = useSelector(state => state.product);
     
-    const catagorydata = doctors.doctor ;
-    const productdata = product.product ;
-    console.log(catagorydata);
+    const catagorydata = doctors.doctor;
+    const productdata = product.product;
+    console.log("catagorydata",catagorydata);
 
     // console.log(product);
 // console.log(product.doctor);
@@ -211,16 +211,14 @@ function Product_admin(props) {
         { field: 'product_name', headerName: 'Product Name', width: 130 },
         { field: 'product_price', headerName: 'Product Price', width: 130 },
         { field: 'product_list', headerName: 'Product Type', width: 130,
-        renderCell: (params) => {
-            catagorydata.map((g) =>{
-                if (g.id === params.formattedValue) {
-                    console.log(g.catagory_name);
-                    return <p>{g.catagory_name}</p>
-                }else{
-                    console.log();
+        renderCell: (params) => (
+            catagorydata.map((x) => {
+                // console.log(x.id, params.formattedValue);
+                if(x.id === params.formattedValue){
+                    return <div>{x.catagory_name}</div>
                 }
             })
-        }
+        )
 
          },
         { field: 'product_description', headerName: 'Product Description', width: 130 },
