@@ -9,6 +9,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { getdocdata } from '../../Redux/Acton/doctor.action';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../../Redux/Acton/product.action';
+import { useHistory } from 'react-router-dom';
 // import allimg from "../../../public/images/1f6cd.png"
 
 
@@ -32,33 +33,37 @@ function Product(props) {
     const [price, setPrice] = useState('');
     const [data, setData] = useState([]);
     const [search , setSearch] = useState("All");
-    const [filterDataPro , setFilterDataPro] = useState()
+    const [filterDataPro , setFilterDataPro] = useState([]);
 
     console.log(search);
+    console.log(filterDataPro);
 
     const handleCatagory = (c) => {
-//    setSearch({...search , catagory : c})
-
-    console.log("id" ,c);
-    console.log("Filterdata" , c , productdata);
-
-    const Filter = [];
-
-    if (c === "All") {
-
-        Filter.push(productdata);
-    }
-
-    const FiltreProd = productdata.filter((f) =>{
-        if (c === f.product_list) {
-            Filter.push(f);
-            
+        console.log(c);
+        let filter = [];
+        if (c === "All") {
+            filter.push(productdata);
         }
-    })
-    setFilterDataPro(Filter)
 
-
+        productdata.filter((f) =>{
+            if (c === f.product_list) {
+                console.log(f);
+                filter.push(f);
+            }
+        })
+        setFilterDataPro(filter);
     };
+
+const filtercat = filterDataPro.length > 0 ? filterDataPro : productdata;
+
+
+const historty = useHistory()
+
+
+const handledetail = (p) =>{
+    historty.push('/product_detail', p)  
+console.log(p);
+}
 
 
 
@@ -67,13 +72,6 @@ useEffect(() =>{
    dispatch(getProduct())
 
 },[])
-
-    // const handleSubmit = () => {
-
-
-    // }
-
-
 
 
 
@@ -110,7 +108,7 @@ useEffect(() =>{
                     {
                         catagory.doctor.map((c) =>{
                             return(
-                            <a href="#" onClick={(e) => handleCatagory(c.catagory_name)}>
+                            <a href="#" onClick={(e) => handleCatagory(c.id)}>
                                 <div className='cat-view-box'>
                                 
                                     <div className='box-img'>
@@ -141,7 +139,7 @@ useEffect(() =>{
                     <div className="row">
                      
                                     {
-                                        product.product.map((e) =>(
+                                        filtercat.map((e) =>(
                                             
                                  
 
@@ -152,8 +150,8 @@ useEffect(() =>{
                                                             <button><a href className="option1">
                                                                 Add To Cart
                                                             </a></button>
-                                                            <button> <a href className="option2">
-                                                                Buy Now
+                                                            <button> <a onClick={() => {handledetail(e)}}  className="option2">
+                                                               View
                                                             </a></button>
                                                         </div>
                                                     </div>
@@ -165,7 +163,7 @@ useEffect(() =>{
                                                                 <h5 className='pro-name'>{e.product_name}</h5>
                                                                 <h6>Price : {e.product_price}</h6>
                                                             </div>    
-                                                                <p className='pro-type'>Catagory : {e.product_list}</p>
+
                                                                 <p className='description-pro'>{e.product_description}</p>
                                                         </div>
                                                 </div>

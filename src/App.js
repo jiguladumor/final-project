@@ -8,12 +8,12 @@ import Blog_list from './Container/Blog_list/Blog_list';
 import Contact from './Container/Contact/Contact';
 import Login from './Container/Login/Login';
 import Footer from './Component/Footer/Footer';
-import Catagory from "./Container/Catagory/Catagory";
 import Catagories_admin from "./Adminpannel/Container/Catagories_admin";
 import Product_admin from "./Adminpannel/Container/Product_admin";
 import { Provider } from "react-redux";
 import { counterStore } from "./Redux/Store";
 import { PersistGate } from "redux-persist/integration/react";
+import ProductDetails from "./Container/Productdetails/ProductDetails";
 
 function App() {
 
@@ -30,6 +30,7 @@ function App() {
           <Route exact path={"/testimonial"} component={Testimonial} />
           <Route exact path={"/products"} component={Product} />
           <Route exact path={"/product_admin"} component={Product_admin} />
+          <Route exact path={"/product_detail"} component={ProductDetails} />
           <Route exact path={"/Catagories_admin"} component={Catagories_admin} />
           <Route exact path={"/blog"} component={Blog_list} />
           <Route exact path={"/contact"} component={Contact} />
