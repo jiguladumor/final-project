@@ -1217,3 +1217,24 @@ section.catagory-view {
   background: none;
   border: none;
 }
+
+.single-pro {
+  display: flex;
+  margin: 5% 0;
+}
+.single-pro h4 {
+  font-size: 28px;
+  margin-bottom: 3%;
+  text-transform: uppercase;
+}
+p.single-des {
+  display: flex;
+}
+p.single-des span {
+  margin-right: 2%;
+}
+.single-pro img {
+  width: 100%;
+}
+
+.Add-button 

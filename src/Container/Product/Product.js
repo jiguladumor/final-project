@@ -42,7 +42,7 @@ function Product(props) {
         console.log(c);
         let filter = [];
         if (c === "All") {
-            filter.push(productdata);
+            setFilterDataPro([]);
         }
 
         productdata.filter((f) =>{
