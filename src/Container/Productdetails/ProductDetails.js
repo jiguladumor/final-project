@@ -4,6 +4,7 @@ function ProductDetails(props) {
     const data = [props.location.state]
     return (
         <>
+        
             {
                 data.map((k) =>(
                     <div >
