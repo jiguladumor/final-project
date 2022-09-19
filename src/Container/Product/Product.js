@@ -106,7 +106,7 @@ useEffect(() =>{
                       </div>
                       </a>
                     {
-                        
+
                         catagory.doctor.map((c) =>{
                             return(
                             <a href="#" onClick={(e) => handleCatagory(c.id)}>
@@ -121,6 +121,7 @@ useEffect(() =>{
                             )
                         })
                     }
+                    
 
             </div>
 

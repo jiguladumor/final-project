@@ -4,7 +4,7 @@ function ProductDetails(props) {
     const data = [props.location.state]
     return (
         <>
-        
+
             {
                 data.map((k) =>(
                     <div >
@@ -27,6 +27,7 @@ function ProductDetails(props) {
                                                 <button> <a href  className="option2"> Buy Now </a></button>
                                         </div>                
                                 </div>
+                                
                             </div>                                
                         </div>
                            </div>
