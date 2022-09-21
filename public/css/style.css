@@ -1236,3 +1236,30 @@ p.single-des span {
 .single-pro img {
   width: 100%;
 }
+.pr-des {
+  margin-left: 5%;
+}
+.box.Add-button .options button {
+  margin: 1%;
+  padding: 15px 50px;
+  background: #ef4049;
+  border: none;
+  color: #fff;
+  border-radius: 30px;
+}
+.box.Add-button .options button:hover {
+  background: #000;
+  transition: 0.5s all;
+}
+.box.Add-button .options .buy-now {
+  margin: 1%;
+  padding: 15px 50px;
+  background: #000000;
+  border: none;
+  color: #fff;
+  border-radius: 30px;
+}
+.box.Add-button .options .buy-now:hover {
+  background: #ef4049;
+  transition: 0.5s all;
+}

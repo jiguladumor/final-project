@@ -21,7 +21,6 @@ export const doctorReducer = (state = initalstate, action) => {
             return {
                 ...state,
                 isLoading: true,
-
                 error: ""
             }
         case ActionType.GET_DOCTOR:

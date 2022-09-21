@@ -10,6 +10,7 @@ import { getdocdata } from '../../Redux/Acton/doctor.action';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../../Redux/Acton/product.action';
 import { useHistory } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 // import allimg from "../../../public/images/1f6cd.png"
 
 
@@ -150,7 +151,7 @@ useEffect(() =>{
                                                     <div className="option_container">
                                                         <div className="options">
                                                             <button><a href className="option1">
-                                                                Add To Cart
+                                                               <ShoppingCartIcon/> Add To Cart
                                                             </a></button>
                                                             <button> <a onClick={() => {handledetail(e)}}  className="option2">
                                                                View
