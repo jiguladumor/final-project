@@ -25,12 +25,6 @@ productdata.map((j) =>{
 })
 
 console.log(Procart);
-
-
-
-
-
-
 useEffect(() =>{
 dispatch(getProduct());
 }, [])

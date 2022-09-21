@@ -26,7 +26,6 @@ history.push("/cart_detail")
 
     return (
         <>
-
             {
                 data.map((k) =>(
                     <div >
@@ -49,7 +48,6 @@ history.push("/cart_detail")
                                                 <button class="buy-now"> <a href  className="option2"><BoltIcon/> Buy Now </a></button>
                                         </div>                
                                 </div>
-                                
                             </div>                                
                         </div>
                            </div>
